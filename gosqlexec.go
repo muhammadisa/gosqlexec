@@ -26,7 +26,8 @@ type IGoSQLExec interface {
 	CustomQueryExecutor()
 }
 
-func lineByLineReader(path string) string {
+// LineByLineReader for reading sql file syntax
+func LineByLineReader(path string) string {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -46,39 +47,45 @@ func lineByLineReader(path string) string {
 	return stringCode
 }
 
-func queryExecutor(
+// QueryExecutor execute query from line by line func
+func QueryExecutor(
 	sess *dbr.Session,
 	path string,
-) {
-	query := lineByLineReader(path)
-	fmt.Println(fmt.Sprintf("\n[PROC] Executing slq : %s", path))
-	fmt.Print(query)
+) error {
+	query := LineByLineReader(path)
+	if query == "" {
+		return fmt.Errorf("No SQL to exec")
+	}
 	result, err := sess.Query(query)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	result.Close()
-	fmt.Println("[OK] query executed successfully")
+	return nil
 }
 
 // CustomQueryExecutor custom alter tables sql
-func (qexec GoSQLExec) CustomQueryExecutor() {
-	queryExecutor(qexec.Sess, qexec.CustomQuery)
+func (qexec GoSQLExec) CustomQueryExecutor() error {
+	return QueryExecutor(qexec.Sess, qexec.CustomQuery)
 }
 
 // AlterTables custom alter tables sql
-func (qexec GoSQLExec) AlterTables() {
-	queryExecutor(qexec.Sess, qexec.AlterQuery)
+func (qexec GoSQLExec) AlterTables() error {
+	return QueryExecutor(qexec.Sess, qexec.AlterQuery)
 }
 
 // DropTablesIfExists drop all schemas
-func (qexec GoSQLExec) DropTablesIfExists() {
-	queryExecutor(qexec.Sess, qexec.DropQuery)
+func (qexec GoSQLExec) DropTablesIfExists() error {
+	return QueryExecutor(qexec.Sess, qexec.DropQuery)
 }
 
 // MigrateSchemas make qexec
-func (qexec GoSQLExec) MigrateSchemas() {
+func (qexec GoSQLExec) MigrateSchemas() error {
 	for _, path := range qexec.Schemas {
-		queryExecutor(qexec.Sess, path)
+		err := QueryExecutor(qexec.Sess, path)
+		if err != nil {
+			return err
+		}
 	}
+	return nil
 }
