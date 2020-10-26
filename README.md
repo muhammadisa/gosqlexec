@@ -60,6 +60,8 @@ qe := gosqlexec.GoSQLExec{
 
 ### Create CLI for your project
 
+This project is using CLI from [https://github.com/urfave/cli]()
+
 ```go
 app := cli.NewApp()
 app.Name = "Your Project Name"
