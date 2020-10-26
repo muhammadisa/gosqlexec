@@ -21,21 +21,21 @@ go get -u github.com/muhammadisa/gosqlexec
 ### Create database SQL files structure like this
 
 ```
-+---db
-|   +---alter
-|   |       alter_tables.sql
-|   |
-|   +---drop
-|   |       drop_tables.sql
-|   |
-|   +---query
-|   |       custom_query.sql
-|   |
-|   \---schemas
-|           articles.sql
-|           authors.sql
-|           likes.sql
-|           users.sql
++-db
+   +---alter
+   |       alter_tables.sql
+   |
+   +---drop
+   |       drop_tables.sql
+   |
+   +---query
+   |       custom_query.sql
+   |
+   \---schemas
+           articles.sql
+           authors.sql
+           likes.sql
+           users.sql
 ```
 
 
