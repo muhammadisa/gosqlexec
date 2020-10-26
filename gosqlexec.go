@@ -9,8 +9,8 @@ import (
 	"github.com/gocraft/dbr/v2"
 )
 
-// Gosqlexec struct
-type Gosqlexec struct {
+// GoSQLExec struct
+type GoSQLExec struct {
 	Sess        *dbr.Session
 	CustomQuery string
 	DropQuery   string
@@ -18,8 +18,8 @@ type Gosqlexec struct {
 	Schemas     []string
 }
 
-// IGosqlexec interface
-type IGosqlexec interface {
+// IGoSQLExec interface
+type IGoSQLExec interface {
 	MigrateSchemas()
 	DropTablesIfExists()
 	AlterTables()
@@ -62,22 +62,22 @@ func queryExecutor(
 }
 
 // CustomQueryExecutor custom alter tables sql
-func (qexec Gosqlexec) CustomQueryExecutor() {
+func (qexec GoSQLExec) CustomQueryExecutor() {
 	queryExecutor(qexec.Sess, qexec.CustomQuery)
 }
 
 // AlterTables custom alter tables sql
-func (qexec Gosqlexec) AlterTables() {
+func (qexec GoSQLExec) AlterTables() {
 	queryExecutor(qexec.Sess, qexec.AlterQuery)
 }
 
 // DropTablesIfExists drop all schemas
-func (qexec Gosqlexec) DropTablesIfExists() {
+func (qexec GoSQLExec) DropTablesIfExists() {
 	queryExecutor(qexec.Sess, qexec.DropQuery)
 }
 
 // MigrateSchemas make qexec
-func (qexec Gosqlexec) MigrateSchemas() {
+func (qexec GoSQLExec) MigrateSchemas() {
 	for _, path := range qexec.Schemas {
 		queryExecutor(qexec.Sess, path)
 	}

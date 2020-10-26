@@ -85,7 +85,7 @@ func connectToDB(fileName string) (*dbr.Connection, *dbr.Session, error) {
 }
 
 // MigrateCommand function
-func MigrateCommand(gosqlexec Gosqlexec) cli.Command {
+func MigrateCommand(gosqlexec GoSQLExec) cli.Command {
 	return cli.Command{
 		Name:  "migrate",
 		Usage: fmt.Sprintf("Migrate schemas defined %s", gosqlexec.Schemas),
@@ -110,7 +110,7 @@ func MigrateCommand(gosqlexec Gosqlexec) cli.Command {
 }
 
 // DropTablesCommand function
-func DropTablesCommand(gosqlexec Gosqlexec) cli.Command {
+func DropTablesCommand(gosqlexec GoSQLExec) cli.Command {
 	return cli.Command{
 		Name:  "drop-tables",
 		Usage: fmt.Sprintf("Drop any tables defined inside %s", gosqlexec.DropQuery),
@@ -135,7 +135,7 @@ func DropTablesCommand(gosqlexec Gosqlexec) cli.Command {
 }
 
 // AlterTablesCommand function
-func AlterTablesCommand(gosqlexec Gosqlexec) cli.Command {
+func AlterTablesCommand(gosqlexec GoSQLExec) cli.Command {
 	return cli.Command{
 		Name:  "alter-tables",
 		Usage: fmt.Sprintf("Alter any tables defined inside %s", gosqlexec.AlterQuery),
@@ -160,7 +160,7 @@ func AlterTablesCommand(gosqlexec Gosqlexec) cli.Command {
 }
 
 // CustomQueryExecCommand function
-func CustomQueryExecCommand(gosqlexec Gosqlexec) cli.Command {
+func CustomQueryExecCommand(gosqlexec GoSQLExec) cli.Command {
 	return cli.Command{
 		Name:  "custom-query-exec",
 		Usage: fmt.Sprintf("Execute any queries defined inside %s", gosqlexec.CustomQuery),
