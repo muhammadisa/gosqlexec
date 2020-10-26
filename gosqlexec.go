@@ -56,11 +56,13 @@ func QueryExecutor(
 	if query == "" {
 		return fmt.Errorf("No SQL to exec")
 	}
+	fmt.Println("[OK] Query Loaded")
 	result, err := sess.Query(query)
 	if err != nil {
 		return err
 	}
 	result.Close()
+	fmt.Println("[OK] Query Executed")
 	return nil
 }
 
