@@ -18,7 +18,7 @@ go get -u github.com/muhammadisa/gosqlexec
 
 
 
-### Create database SQL files
+### Create database SQL files structure like this
 
 ```
 +---db
