@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to gosqlexec 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.2-blue.svg?cacheSeconds=2592000" />
   <img alt="documentation: yes" src="https://img.shields.io/badge/Documentation-Yes-green.svg" />
   <img alt="maintained: yes" src="https://img.shields.io/badge/Maintained-Yes-green.svg" />
 </p>
