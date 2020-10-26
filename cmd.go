@@ -99,7 +99,10 @@ func MigrateCommand(gosqlexec GoSQLExec) cli.Command {
 			gosqlexec.Sess = sess
 			if confirmation(message) {
 				if password(env, enterPasswordMessage) {
-					gosqlexec.MigrateSchemas()
+					err := gosqlexec.MigrateSchemas()
+					if err != nil {
+						log.Fatal(err)
+					}
 				}
 				os.Exit(1)
 			}
@@ -124,7 +127,10 @@ func DropTablesCommand(gosqlexec GoSQLExec) cli.Command {
 			gosqlexec.Sess = sess
 			if confirmation(message) {
 				if password(env, enterPasswordMessage) {
-					gosqlexec.DropTablesIfExists()
+					err := gosqlexec.DropTablesIfExists()
+					if err != nil {
+						log.Fatal(err)
+					}
 				}
 				os.Exit(1)
 			}
@@ -149,7 +155,10 @@ func AlterTablesCommand(gosqlexec GoSQLExec) cli.Command {
 			gosqlexec.Sess = sess
 			if confirmation(message) {
 				if password(env, enterPasswordMessage) {
-					gosqlexec.AlterTables()
+					err := gosqlexec.AlterTables()
+					if err != nil {
+						log.Fatal(err)
+					}
 				}
 				os.Exit(1)
 			}
@@ -174,7 +183,10 @@ func CustomQueryExecCommand(gosqlexec GoSQLExec) cli.Command {
 			gosqlexec.Sess = sess
 			if confirmation(message) {
 				if password(env, enterPasswordMessage) {
-					gosqlexec.CustomQueryExecutor()
+					err := gosqlexec.CustomQueryExecutor()
+					if err != nil {
+						log.Fatal(err)
+					}
 				}
 				os.Exit(1)
 			}
